@@ -65,14 +65,7 @@ st.markdown("""
         margin-left: auto;
         margin-right: auto;
     }
-    .equation-container {
-        background: #181818 !important;
-        border: 1px solid #f6e27a33 !important;
-        border-radius: 8px;
-        padding: 1rem;
-        margin: 0.5rem 0;
-        text-align: center;
-    }
+
     .warning-box {
         background: #ff6b6b !important;
         color: #fff !important;
