@@ -65,9 +65,8 @@ st.markdown("""
         margin-left: auto;
         margin-right: auto;
     }
-    .equation {
+    .equation-container {
         background: #181818 !important;
-        color: #f6e27a !important;
         border: 1px solid #f6e27a33 !important;
         border-radius: 8px;
         padding: 1rem;
@@ -110,9 +109,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Gemini API yapılandırması
-GOOGLE_API_KEY = "AIzaSyCXTwNnlmP1-NpY30OLA1WTHYDRRtbsHgs"
-genai.configure(api_key=GOOGLE_API_KEY)
-
+try:
+    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+    genai.configure(api_key=GOOGLE_API_KEY)
+except KeyError:
+    st.error("API anahtarı bulunamadı. Lütfen secrets.toml dosyasını kontrol edin.")
+    st.stop()
 
 def is_physics_topic(query: str) -> bool:
     """Girilen konunun fizik konusu olup olmadığını kontrol et"""
@@ -129,14 +131,7 @@ def get_gemini_explanation(query: str) -> str:
     try:
         model = genai.GenerativeModel('gemini-1.5-flash')
         response = model.generate_content(
-            f"""Lütfen aşağıdaki elektrik ve manyetizma konusu hakkında detaylı bilgi ver:
-            Konu: {query}
-            
-            Lütfen şu başlıklar altında bilgi ver:
-            1. Temel Açıklama
-            2. Örnekler
-            3. Günlük Hayattan Uygulamalar
-            
+            f"""Bu konu hakkında kısaca bilgi ver, formüllerden ve mantığından bahset: {query}
             Bilgileri Türkçe olarak, anlaşılır bir dille açıkla.
             Eğer konu elektrik ve manyetizma ile ilgili değilse, bunu belirt ve elektrik-manyetizma konularına yönlendir."""
         )
@@ -159,11 +154,10 @@ def search_physics(query: str):
 
 def display_equation(equation: str):
     """Display a LaTeX equation in a formatted box"""
-    st.markdown(f"""
-    <div class="equation">
-        ${equation}$
-    </div>
-    """, unsafe_allow_html=True)
+   
+    st.markdown('<div class="equation-container">', unsafe_allow_html=True)
+    st.latex(equation)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 def main():
     # Arama çubuğu
@@ -188,8 +182,9 @@ def main():
         
         # Sonuçları göster
         if db_results:
-            st.subheader("📚 Veritabanı Sonuçları")
+            st.subheader("Sonuçlar")
             for result in db_results:
+                
                 st.markdown(f"""
                     <div class="card">
                         <h3>{result['title']}</h3>
