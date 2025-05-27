@@ -110,7 +110,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Gemini API yapılandırması
-GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+GOOGLE_API_KEY = "AIzaSyCXTwNnlmP1-NpY30OLA1WTHYDRRtbsHgs"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 
