@@ -13,7 +13,7 @@ st.set_page_config(
 st.markdown("""
     <style>
     body, .main {
-        background: linear-gradient(90deg, #232526 0%, #414345 100%) !important;
+        background: linear-gradient(45deg, #232526, #414345) !important;
         color: #f6e27a !important;
     }
     .custom-header {
@@ -96,7 +96,7 @@ st.markdown("""
 
 st.markdown("""
     <div class="custom-header">
-        <h1>🔬 Physics Search Engine</h1>
+        <h1>Physics Search Engine</h1>
         <h3>Elektrik ve Manyetizma konularını keşfedin</h3>
     </div>
 """, unsafe_allow_html=True)
