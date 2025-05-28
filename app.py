@@ -25,20 +25,16 @@ st.markdown("""
         box-shadow: 0 4px 24px rgba(0,0,0,0.25);
         text-align: center;
     }
-    .custom-header h1 {
-        font-size: 2.5rem;
+    .custom-header h2 {
+        font-size: 1.8rem;
         font-weight: 800;
         margin-bottom: 0.2em;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         color: #f6e27a;
         text-shadow: 0 2px 8px #23252655;
+        text-align:center;
     }
-    .custom-header h3 {
-        font-size: 1.2rem;
-        font-weight: 400;
-        color: #e0e0e0;
-        margin-bottom: 0;
-    }
+
     .stTextInput>div>div>input {
         background: #232526 !important;
         color: #f6e27a !important;
@@ -96,8 +92,9 @@ st.markdown("""
 
 st.markdown("""
     <div class="custom-header">
-        <h1>Physics Search Engine</h1>
-        <h3>Elektrik ve Manyetizma konularını keşfedin</h3>
+        <h1 style="text-align: center">🎠</h1>
+        <h2>ELEKTRIK VE MANYETIZMA ARAMA MOTORU</h2>
+       
     </div>
 """, unsafe_allow_html=True)
 
