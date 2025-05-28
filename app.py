@@ -152,7 +152,8 @@ def display_equation(equation: str):
 
 def main():
     # Arama çubuğu
-    query = st.text_input("Fizik kavramını arayın:", placeholder="örn: elektriksel alan, manyetik akı, indüksiyon")
+    st.write("🔍 Kavram Arayın")
+    query = st.text_input( "Yazım hatası yapmadığınızdan emin olun", placeholder="örn: elektriksel alan, manyetik akı, indüksiyon")
     
     if query:
         if not is_physics_topic(query):
