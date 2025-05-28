@@ -124,7 +124,7 @@ def get_gemini_explanation(query: str) -> str:
     try:
         model = genai.GenerativeModel('gemini-1.5-flash')
         response = model.generate_content(
-            f"""Bu konu hakkında kısaca bilgi ver, formüllerden ve mantığından bahset: {query}
+            f"""{query} hakkında kısaca bilgi ver, formüllerden ve mantığından bahset: 
             Bilgileri Türkçe olarak, anlaşılır bir dille açıkla.
             Eğer konu elektrik ve manyetizma ile ilgili değilse, bunu belirt ve elektrik-manyetizma konularına yönlendir."""
         )
@@ -154,7 +154,7 @@ def display_equation(equation: str):
 
 def main():
     # Arama çubuğu
-    query = st.text_input("Fizik kavramını arayın:", placeholder="örn: elektrik alan, manyetik akı, indüksiyon")
+    query = st.text_input("Fizik kavramını arayın:", placeholder="örn: elektriksel alan, manyetik akı, indüksiyon")
     
     if query:
         if not is_physics_topic(query):
@@ -182,7 +182,7 @@ def main():
                     <div class="card">
                         <h3>{result['title']}</h3>
                         <p>{result['content']}</p>
-                        <h4>Temel Denklemler:</h4>
+                        
                 """, unsafe_allow_html=True)
                 
                 for eq in result["equations"]:
@@ -197,13 +197,16 @@ def main():
                 </div>
             """, unsafe_allow_html=True)
         
-        # AI açıklamasını göster
-        st.markdown("""
-            <div class="card">
-                <h3>🤖 AI Açıklaması</h3>
-        """, unsafe_allow_html=True)
-        st.write(ai_explanation)
-        st.markdown("</div>", unsafe_allow_html=True)
+        # AI açıklamasını göste
+        ai_rec = st.button("🚀 AI Açıklaması Üret")
+        if ai_rec:
+            st.markdown("""
+                <div class="card">
+                    <h3>AI Açıklaması:</h3>
+            """, unsafe_allow_html=True)
+            st.write(ai_explanation)
+            st.markdown("</div>", unsafe_allow_html=True)
+
 
 if __name__ == "__main__":
     main()
